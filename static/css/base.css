@@ -1,0 +1,15 @@
+body {
+    background-image: url("../images/back.png");
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                background-attachment: fixed;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 2px solid #9da6ab;
+}

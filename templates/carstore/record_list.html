@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+
+{% block title %}Records{% endblock title %}
+
+{% block content %}
+
+  <h1>Records</h1>
+
+  <form class="form-inline mt-2 mt-md-0" action="{% url 'record_search_results' %}" method="get">
+    <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  </form>
+
+  <br>
+
+  <table class="table">
+    <tr><th>WarehouseID</th><th>Car model</th><th>Quantity</th></tr>
+    {% for r in records %}
+      <tr>
+        <td>{{ r.warehouse }}</td>
+        <td>{{ r.carmodel }}</td>
+        <td>{{ r.quantity }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock content %}

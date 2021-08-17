@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-allauth = "*"
+django-crispy-forms = "*"
+psycopg2 = "*"
+django-rest-framework = "*"
+environs = {extras = ["django"], version = "*"}
+whitenoise = "*"
+gunicorn = "*"
+djangorestframework-bulk = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
