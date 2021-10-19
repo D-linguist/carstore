@@ -1,0 +1,75 @@
+{% extends '_base.html' %}
+
+{% block title %}Car models{% endblock title %}
+
+{% block content %}
+
+<main class="col-md-4 border-left">
+  <h3>{{ single_car_model.id }}: {{ single_car_model.brand }} {{ single_car_model.name }}</h3>
+    <form action="{% url 'add_order' single_car_model.id %}" method="post">
+      {% csrf_token %}
+      <article class="content-body">
+
+        <div class="mb-3">
+          <var class="price h4">Price: ${{ single_car_model.price }}</var>
+        </div>
+
+      <!--
+        <div class="row">
+          <h6>Quantity</h6>
+          <div class="input-group">
+            <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="{{ orders_count }}" required>
+          {% if orders %}
+          <h6>To order:</h6>
+            <select name="order" class="form-control" required>
+              <option value="" disabled selected>Choose order</option>
+              {% for i in orders %}
+              <option value="{{ i.id }}">{{ i.id }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+          <button type="submit" class="btn btn-primary">Add to order</button>
+        </div>
+      -->
+
+      <div class="row">
+        <form method="POST">
+          {% csrf_token %}
+          {% if orders %}
+          <div>
+            <h6>To order:</h6>
+            <select name="order_id" class="form-control" type="number" required>
+              <option value="order_id" name="order_id" disabled selected>Choose order</option>
+              {% for i in orders %}
+              <option value="{{ i.pk }}">{{ i.pk }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% else %}
+          <div>
+            <h6>Create new order:</h6>
+            <select name="firm_name" class="form-control" type="text" required>
+              <option value="firm_name" name="firm_name" disabled selected>Choose firm</option>
+              {% for f in firms %}
+              <option value="{{ f.id }}">{{ f.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+          <div class="col-md-4">
+            <h6>Quantity:</h6>
+            <input class="form-control" type="number" id="quantity" name="quantity" min="1" required>
+          </div>
+          <div>
+            <br>
+            <button type="submit" class="btn btn-primary">Add to order</button>
+          </div>
+        </form>
+      </div>
+
+      </article>
+    </form>
+</main>
+
+{% endblock content %}

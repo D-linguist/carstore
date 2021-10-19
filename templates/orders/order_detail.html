@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block title %}Order details{% endblock title %}
+
+{% block content %}
+<h1>Order №{{ order }}</h1>
+
+  <br>
+
+  <table class="table">
+    <tr><th>ID</th><th>Car Model</th><th>Quantity</th></tr>
+    {% for d in order_details %}
+      <tr>
+        <td>{{ d.id }}</td>
+        <td>{{ d.car_model }}</td>
+        <td>{{ d.quantity }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock content %}

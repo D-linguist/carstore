@@ -13,15 +13,19 @@
 
 
 <div>
+  {% if records %}
   <table class="table">
     <tr><th>WarehouseID</th><th>Car model</th><th>Quantity</th></tr>
-      {% for r in records %}
-        <tr>
-          <td>{{ r.warehouse }}</td>
-          <td>{{ r.carmodel }}</td>
-          <td>{{ r.quantity }}</td>
-        </tr>
-      {% endfor %}
-    </table>
+    {% for r in records %}
+      <tr>
+        <td>{{ r.warehouse }}</td>
+        <td>{{ r.carmodel }}</td>
+        <td>{{ r.quantity }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <h3>No records found.</h3>
+  {% endif %}
 </div>
 {% endblock content %}

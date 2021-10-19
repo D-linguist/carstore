@@ -2,6 +2,7 @@
 
 {% block title %}Search{% endblock title %}
 
+
 {% block content %}
 <h1>Search Results</h1>
 
@@ -13,15 +14,19 @@
 
 
 <div>
-  <table class="table">
-    <tr><th>ID</th><th>Brand</th><th>Country</th></tr>
-    {% for b in brands %}
-      <tr>
-        <td>{{ b.id }}</td>
-        <td>{{ b.name }}</td>
-        <td>{{ b.country }}</td>
-      </tr>
-    {% endfor %}
-  </table>
+  {% if brands %}
+    <table class="table">
+      <tr><th>ID</th><th>Brand</th><th>Country</th></tr>
+      {% for b in brands %}
+        <tr>
+          <td>{{ b.id }}</td>
+          <td>{{ b.name }}</td>
+          <td>{{ b.country }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <h3>No brands found.</h3>
+  {% endif %}
 </div>
 {% endblock content %}

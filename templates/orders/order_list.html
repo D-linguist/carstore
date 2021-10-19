@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+
+{% block title %}Orders{% endblock title %}
+
+{% block content %}
+
+{% if not orders %}
+  <h3>You made no orders.</h3>
+{% else %}
+  <h1>Orders</h1>
+    <br>
+    <table class="table">
+      <tr><th>ID</th><th>Employee</th><th>Firm</th><th>Created at</th><th>Updated at</th></tr>
+      {% for o in orders %}
+        <tr>
+          <td><a href="{% url 'order_detail' o.pk %}">{{ o.id }}</a></td>
+          <td>{{ o.employee }}</td>
+          <td>{{ o.firm }}</td>
+          <td>{{ o.created_at }}</td>
+          <td>{{ o.updated_at }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock content %}

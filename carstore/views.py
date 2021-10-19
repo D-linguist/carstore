@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.shortcuts import render
 from django.views.generic import ListView
 from rest_framework import generics
 from rest_framework_bulk import ListBulkCreateUpdateDestroyAPIView
 
+from orders.models import Order, Employee, Firm
+from orders.views import _get_user
 from .models import Brand, Warehouse, CarModel, Record
 from .serializers import BrandSerializer, CarModelSerializer, WarehouseSerializer, RecordSerializer
 
@@ -113,3 +116,21 @@ class WarehouseList(ListBulkCreateUpdateDestroyAPIView):
 class WarehouseDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Warehouse.objects.all()
     serializer_class = WarehouseSerializer
+
+
+def car_model_detail(request, car_model_id):
+    try:
+        employee = Employee.objects.get(user__username=_get_user(request))
+        single_car_model = CarModel.objects.get(id=car_model_id)
+        orders = Order.objects.filter(employee=employee)
+        orders_count = orders.count()
+        firms = Firm.objects.all()
+    except Employee.DoesNotExist:
+        return render(request, 'orders/not_employee.html')
+    context = {
+        'single_car_model': single_car_model,
+        'orders': orders,
+        'orders_count': orders_count,
+        'firms': firms,
+    }
+    return render(request, 'carstore/car_model_detail.html', context)

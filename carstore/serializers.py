@@ -23,12 +23,12 @@ class WarehouseSerializer(BulkSerializerMixin, serializers.ModelSerializer):
 class CarModelSerializer(BulkSerializerMixin, serializers.ModelSerializer):
     class Meta:
         model = CarModel
-        fields = ('id', 'name', 'brand',)
+        fields = ('id', 'name', 'brand', 'price',)
         list_serializer_class = BulkListSerializer
 
 
 class RecordSerializer(BulkSerializerMixin, serializers.ModelSerializer):
     class Meta:
         model = Record
-        fields = ('warehouse', 'carmodel', 'quantity',)
+        fields = ('id', 'warehouse', 'carmodel', 'quantity',)
         list_serializer_class = BulkListSerializer

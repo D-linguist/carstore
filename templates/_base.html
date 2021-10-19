@@ -22,6 +22,9 @@
         <a href="{% url 'home' %}" class="dropdown-item navbar-brand my-0 mr-md-auto font-weight-normal">
           Home
         </a>
+        <a href="{% url 'orders' %}" class="dropdown-item navbar-brand my-0 mr-md-auto font-weight-normal">
+          Orders
+        </a>
       </div>
         <a href="{% url 'brands' %}" class="navbar-brand font-weight-normal">
           Brands
@@ -37,6 +40,7 @@
         </a>
       <nav class="navbar sticky-top ml-auto my-2 my-md-0 mr-md-3">
         {% if user.is_authenticated %}
+           <a class="nav-link disabled" href="#">{{ user.username }}</a>
           <a class="p-2 text-dark" href="{% url 'account_logout' %}">Log Out</a>
         {% else %}
           <a class="p-2 text-dark" href="{% url 'account_login' %}">Log In</a>

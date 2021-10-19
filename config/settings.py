@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = ['dmi-carstore.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -51,9 +51,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'crispy_forms',
     'rest_framework',
+    'django_filters',
 
     'carstore.apps.CarstoreConfig',
     'pages.apps.PagesConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -154,6 +156,9 @@ SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

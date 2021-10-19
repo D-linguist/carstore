@@ -21,7 +21,8 @@ class CarModelAdmin(admin.ModelAdmin):
     inlines = [
         RecordInline,
     ]
-    list_display = ("name", "brand",)
+    list_display = ("name", "brand", "price",)
+    list_editable = ('price',)
 
 
 admin.site.register(Warehouse)

@@ -1,12 +1,14 @@
 from django.urls import path
 from .views import BrandListView, CarModelListView, WarehouseListView, RecordListView, \
-    SearchBrandsListView, SearchCarModelsListView, \
+    SearchBrandsListView, SearchCarModelsListView, SearchRecordsListView, \
     BrandList, BrandDetail, CarModelList, CarModelDetail, WarehouseList, WarehouseDetail, RecordList, RecordDetail, \
-    SearchRecordsListView
+    car_model_detail
+
 
 urlpatterns = [
     path('brands/', BrandListView.as_view(), name='brands'),
     path('car_models/', CarModelListView.as_view(), name='car_models'),
+    path('car_models/<int:car_model_id>', car_model_detail, name='car_model_detail'),
     path('records/', RecordListView.as_view(), name='records'),
     path('warehouses/', WarehouseListView.as_view(), name='warehouses'),
     path('search_brands/', SearchBrandsListView.as_view(), name='brand_search_results'),
