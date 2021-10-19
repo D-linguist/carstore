@@ -1,42 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import Http404
-from django.shortcuts import redirect, render, get_object_or_404
-from django.views.generic import ListView
+from django.shortcuts import redirect, render
 
 from carstore.models import CarModel
 from .models import Order, OrderDetail, Employee, Firm
 
-"""
-def add_order(request, car_model_id):
-    car_model = CarModel.objects.get(id=car_model_id)
-    try:
-        order = Order.objects.get(id)
-    except Order.DoesNotExist:
-        order = Order.objects.create(
-            id=_order_id(request)
-        )
-    order.save()
-    order_detail_exists = OrderDetail.objects.filter(car_model=car_model, order=order).exists()
-    if order_detail_exists:
-        detail = OrderDetail.objects.get(car_model=car_model)
-        detail.quantity += 1
-        detail.save()
-    else:
-        detail = OrderDetail.objects.create(car_model=car_model, quantity=1, order=order)
-        detail.save()
-    return redirect('order_detail')
-"""
-
-
-"""
-class OrderListView(LoginRequiredMixin, ListView):
-    model = Order
-    context_object_name = 'orders'
-    template_name = 'orders/order_list.html'
-    login_url = 'account_login'
-"""
 
 def _get_user(request):
     user = User.objects.get(username=request.user.username)
@@ -88,4 +56,3 @@ def add_order(request, car_model_id):
     quantity = request.POST.get('quantity')
     OrderDetail.objects.create(order=order, car_model=car_model, quantity=quantity)
     return redirect('orders')
-
