@@ -1,9 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from rest_framework import generics
+from rest_framework_bulk import ListBulkCreateUpdateDestroyAPIView
 
 from carstore.models import CarModel
 from .models import Order, OrderDetail, Employee, Firm
+from .serializers import OrderSerializer, FirmSerializer, OrderDetailSerializer
 
 
 def _get_user(request):
@@ -56,3 +59,28 @@ def add_order(request, car_model_id):
     quantity = request.POST.get('quantity')
     OrderDetail.objects.create(order=order, car_model=car_model, quantity=quantity)
     return redirect('orders')
+
+
+class FirmListAPIView(ListBulkCreateUpdateDestroyAPIView):
+    queryset = Firm.objects.all()
+    serializer_class = FirmSerializer
+
+
+class OrderListAPIView(ListBulkCreateUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class OrderDetailListAPIView(ListBulkCreateUpdateDestroyAPIView):
+    queryset = OrderDetail.objects.all()
+    serializer_class = OrderDetailSerializer
+
+
+class OrderDetailDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = OrderDetail.objects.all()
+    serializer_class = OrderDetailSerializer

@@ -78,42 +78,42 @@ class SearchRecordsListView(LoginRequiredMixin, ListView):
         )
 
 
-class BrandList(ListBulkCreateUpdateDestroyAPIView):
+class BrandListAPIView(ListBulkCreateUpdateDestroyAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
 
-class BrandDetail(generics.RetrieveUpdateDestroyAPIView):
+class BrandDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
 
-class CarModelList(ListBulkCreateUpdateDestroyAPIView):
+class CarModelListAPIView(ListBulkCreateUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarModelSerializer
 
 
-class CarModelDetail(generics.RetrieveUpdateDestroyAPIView):
+class CarModelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarModelSerializer
 
 
-class RecordList(ListBulkCreateUpdateDestroyAPIView):
+class RecordListAPIView(ListBulkCreateUpdateDestroyAPIView):
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
 
 
-class RecordDetail(generics.RetrieveUpdateDestroyAPIView):
+class RecordDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
 
 
-class WarehouseList(ListBulkCreateUpdateDestroyAPIView):
+class WarehouseListAPIView(ListBulkCreateUpdateDestroyAPIView):
     queryset = Warehouse.objects.all()
     serializer_class = WarehouseSerializer
 
 
-class WarehouseDetail(generics.RetrieveUpdateDestroyAPIView):
+class WarehouseDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Warehouse.objects.all()
     serializer_class = WarehouseSerializer
 

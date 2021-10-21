@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import BrandListView, CarModelListView, WarehouseListView, RecordListView, \
     SearchBrandsListView, SearchCarModelsListView, SearchRecordsListView, \
-    BrandList, BrandDetail, CarModelList, CarModelDetail, WarehouseList, WarehouseDetail, RecordList, RecordDetail, \
+    BrandListAPIView, BrandDetailAPIView, CarModelListAPIView, CarModelDetailAPIView, WarehouseListAPIView, WarehouseDetailAPIView, RecordListAPIView, RecordDetailAPIView, \
     car_model_detail
 
 
@@ -15,12 +15,12 @@ urlpatterns = [
     path('search_car_models/', SearchCarModelsListView.as_view(), name='car_model_search_results'),
     path('search_records/', SearchRecordsListView.as_view(), name='record_search_results'),
 
-    path('brandsapi/<int:pk>/', BrandDetail.as_view()),
-    path('brandsapi/', BrandList.as_view()),
-    path('carmodelsapi/<int:pk>', CarModelDetail.as_view()),
-    path('carmodelsapi/', CarModelList.as_view()),
-    path('recordsapi/<int:pk>', RecordDetail.as_view()),
-    path('recordsapi/', RecordList.as_view()),
-    path('warehousesapi/<int:pk>', WarehouseDetail.as_view()),
-    path('warehousesapi/', WarehouseList.as_view()),
+    path('api/brands/<int:pk>', BrandDetailAPIView.as_view()),
+    path('api/brands/', BrandListAPIView.as_view()),
+    path('api/carmodels/<int:pk>', CarModelDetailAPIView.as_view()),
+    path('api/carmodels', CarModelListAPIView.as_view()),
+    path('api/records/<int:pk>', RecordDetailAPIView.as_view()),
+    path('api/records/', RecordListAPIView.as_view()),
+    path('api/warehouses/<int:pk>', WarehouseDetailAPIView.as_view()),
+    path('api/warehouses/', WarehouseListAPIView.as_view()),
 ]
