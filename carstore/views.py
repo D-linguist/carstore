@@ -125,6 +125,13 @@ def car_model_detail(request, car_model_id):
         orders = Order.objects.filter(employee=employee)
         orders_count = orders.count()
         firms = Firm.objects.all()
+        records = Record.objects.filter(carmodel_id=car_model_id)
+        records_quantity = 0
+        for r in records:
+            field_name = 'quantity'
+            quantity = getattr(r, field_name)
+            records_quantity += quantity
+        print(records_quantity)
     except Employee.DoesNotExist:
         return render(request, 'orders/not_employee.html')
     context = {
@@ -132,5 +139,6 @@ def car_model_detail(request, car_model_id):
         'orders': orders,
         'orders_count': orders_count,
         'firms': firms,
+        'quantity': records_quantity,
     }
     return render(request, 'carstore/car_model_detail.html', context)

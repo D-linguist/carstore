@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import BrandListView, CarModelListView, WarehouseListView, RecordListView, \
     SearchBrandsListView, SearchCarModelsListView, SearchRecordsListView, \
-    BrandListAPIView, BrandDetailAPIView, CarModelListAPIView, CarModelDetailAPIView, WarehouseListAPIView, WarehouseDetailAPIView, RecordListAPIView, RecordDetailAPIView, \
+    BrandListAPIView, BrandDetailAPIView, CarModelListAPIView, CarModelDetailAPIView, \
+    WarehouseListAPIView, WarehouseDetailAPIView, RecordListAPIView, RecordDetailAPIView, \
     car_model_detail
 
 

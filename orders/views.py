@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from rest_framework import generics
 from rest_framework_bulk import ListBulkCreateUpdateDestroyAPIView
 
-from carstore.models import CarModel
+from carstore.models import CarModel, Record
 from .models import Order, OrderDetail, Employee, Firm
 from .serializers import OrderSerializer, FirmSerializer, OrderDetailSerializer
 
