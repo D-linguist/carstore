@@ -34,6 +34,7 @@ def order_list(request):
 @login_required
 def order_detail_list(request, order):
     order_details = OrderDetail.objects.filter(order=order)
+    order = Order.objects.get(id=order)
     context = {
         'order_details': order_details,
         'order': order,
@@ -45,19 +46,20 @@ def order_detail_list(request, order):
 def add_order(request, car_model_id):
     employee = Employee.objects.get(user__username=_get_user(request))
     car_model = CarModel.objects.get(id=car_model_id)
-    print(employee, car_model)
+    price = getattr(car_model, 'price')
+    print(employee, car_model, price)
     try:
         order_id = request.POST.get('order_id')
-        print(order_id)
         order = Order.objects.get(id=order_id)
-        print(order)
     except Order.DoesNotExist:
         firm_name = request.POST.get('firm_name')
         print(firm_name)
         firm = Firm.objects.get(id=firm_name)
         order = Order.objects.create(employee=employee, firm=firm)
-    quantity = request.POST.get('quantity')
-    OrderDetail.objects.create(order=order, car_model=car_model, quantity=quantity)
+    quantity = int(request.POST.get('quantity'))
+    OrderDetail.objects.create(order=order, car_model=car_model, quantity=quantity, price=(quantity*price))
+    order.total_price += quantity * price
+    order.save()
     return redirect('orders')
 
 

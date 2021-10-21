@@ -131,7 +131,6 @@ def car_model_detail(request, car_model_id):
             field_name = 'quantity'
             quantity = getattr(r, field_name)
             records_quantity += quantity
-        print(records_quantity)
     except Employee.DoesNotExist:
         return render(request, 'orders/not_employee.html')
     context = {

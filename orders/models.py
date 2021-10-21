@@ -26,7 +26,7 @@ class EmployeeFirmsRelation(models.Model):
 class Order(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     firm = models.ForeignKey(Firm, on_delete=models.CASCADE)
-    total_price = models.IntegerField(blank=True, null=True)
+    total_price = models.IntegerField(blank=True, null=True, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

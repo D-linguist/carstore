@@ -3,17 +3,18 @@
 {% block title %}Order details{% endblock title %}
 
 {% block content %}
-<h1>Order №{{ order }}</h1>
+<h1>Order №{{ order.id }} <br> Total price: ${{ order.total_price }}</h1>
 
   <br>
 
   <table class="table">
-    <tr><th>ID</th><th>Car Model</th><th>Quantity</th></tr>
+    <tr><th>ID</th><th>Car Model</th><th>Quantity</th><th>Subtotal</th></tr>
     {% for d in order_details %}
       <tr>
         <td>{{ d.id }}</td>
         <td>{{ d.car_model }}</td>
         <td>{{ d.quantity }}</td>
+        <td>{{ d.price }}</td>
       </tr>
     {% endfor %}
   </table>
