@@ -34,3 +34,5 @@ admin.site.unregister(User)
 admin.site.register(Firm)
 admin.site.register(User, UserAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Employee)
+
