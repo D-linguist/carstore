@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'crispy_forms',
     'rest_framework',
-    'django_filters',
 
     'carstore.apps.CarstoreConfig',
     'pages.apps.PagesConfig',
